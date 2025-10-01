@@ -59,3 +59,25 @@ jobs:
       - name: Push Docker
         run: |
           docker push luzinho7/memory-2026
+
+  deploy-memory-2026:
+    name: Deploy Memory 2026
+    runs-on: self-hosted
+    needs: push-memory-2026
+
+  steps:
+    - name: Config du ssh
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Déploiement
+      run: |
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          docker pull luzinho7/memory-2026
+          docker stop memory-2026 || true
+          docker rm memory-2026 || true
+          docker run -d --name memory-2026 -p 80:80 luzinho7/memory-2026
+        EOF
