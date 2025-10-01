@@ -33,4 +33,18 @@ jobs:
         run: |
           docker build -t luzinho7/memory-2026 .
 
+  push-memory-2026:
+    name: Push Memory 2026
+    runs-on: self-hosted
+    needs: build-memory-2026
 
+    steps:
+      - name: connexion docker
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker
+        run: |
+          docker push luzinho7/memory-2026
