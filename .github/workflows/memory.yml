@@ -81,5 +81,5 @@ jobs:
             docker stop memory-2026 || true
             docker rm memory-2026 || true
             docker run -d --name memory-2026 -p 80:80 luzinho7/memory-2026
-EOF
+          EOF
 
