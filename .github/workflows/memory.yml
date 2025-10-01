@@ -20,7 +20,8 @@ jobs:
           for file in $(git ls-files '*.jpg'); do
           file "$file"
           done
-build-memory-2026:
+
+  build-memory-2026:
   name: Build Memory 2026
   runs-on: self-hosted
   needs: test-memory-2026
