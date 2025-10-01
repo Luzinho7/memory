@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - develop
-      - main
 
 jobs:
   test-memory-2026:
@@ -15,22 +14,23 @@ jobs:
       - name: Recup le code du repo
         uses: actions/checkout@v3
 
-      - name: file sur tout les JPG
+      - name: file sur tous les JPG
         run: |
           for file in $(git ls-files '*.jpg'); do
-          file "$file"
+            file "$file"
           done
 
   build-memory-2026:
-  name: Build Memory 2026
-  runs-on: self-hosted
-  needs: test-memory-2026
+    name: Build Memory 2026
+    runs-on: self-hosted
+    needs: test-memory-2026
 
-  steps:
-    - name: Recup le code du repo
-      uses: actions/checkout@v3
+    steps:
+      - name: Recup le code du repo
+        uses: actions/checkout@v3
 
-    - name: Build Docker image
-      run: |
-        docker build -t luzinho7/memory-2026 .
+      - name: Build Docker image
+        run: |
+          docker build -t luzinho7/memory-2026 .
+
 
