@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  memory-2026:
+    image: luzinho7/memory-2026
+    container_name: memory-2026
+    ports:
+      - "80:80"
+    restart: unless-stopped
