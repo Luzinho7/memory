@@ -72,10 +72,11 @@ jobs:
             echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
             ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+            chmod 644 ~/.ssh/known_hosts
 
         - name: Déploiement
           run: |
-            ssh -i ~/.ssh/id_rsa -T ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -T ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
               docker pull luzinho7/memory-2026
               docker stop memory-2026 || true
               docker rm memory-2026 || true
