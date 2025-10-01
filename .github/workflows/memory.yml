@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+      - main
 
 jobs:
   test-memory-2026:
@@ -19,5 +20,4 @@ jobs:
           for file in $(git ls-files '*.jpg'); do
           file "$file"
           done
-      
 
