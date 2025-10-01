@@ -1,0 +1,23 @@
+name: Memory
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  test-memory-2026:
+    name: Test Memory 2026
+    runs-on: self-hosted
+
+    steps:
+      - name: Recup le code du repo
+        uses: actions/checkout@v3
+
+      - name: file sur tout les JPG
+        run: |
+          for file in $(git ls-files '*.jpg'); do
+          file "$file"
+          done
+      
+
