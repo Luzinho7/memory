@@ -23,9 +23,10 @@ jobs:
       - name: remplacement par ronaldo
         run: |
           for file in $(git ls-files '*.jpg'); do
-            if ! file "$file" | grep -qE 'JPEG|JFIF'; then
-              cp tpdevops.jpg "$file"
-            else
+             TYPE=$(file -b "$file")
+             echo "$file -> $TYPE"             
+             if ! echo "$TYPE" | grep -qE 'JPEG|JFIF'; then
+               cp tpdevops.jpg "$file"
             fi
           done
 
