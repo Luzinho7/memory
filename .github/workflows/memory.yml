@@ -4,10 +4,9 @@ on:
   push:
     branches:
       - develop
-<<<<<<< HEAD
+
       - main
-=======
->>>>>>> develop
+
 
 jobs:
   test-memory-2026:
@@ -18,14 +17,13 @@ jobs:
       - name: Recup le code du repo
         uses: actions/checkout@v3
 
-<<<<<<< HEAD
+
       - name: file sur tout les JPG
         run: |
           for file in $(git ls-files '*.jpg'); do
           file "$file"
           done
-
-=======
+          
       - name: file sur tous les JPG
         run: |
           for file in $(git ls-files '*.jpg'); do
@@ -94,5 +92,3 @@ jobs:
             docker rm memory-2026 || true
             docker run -d --name memory-2026 -p 80:80 luzinho7/memory-2026
           EOF
-
->>>>>>> develop
