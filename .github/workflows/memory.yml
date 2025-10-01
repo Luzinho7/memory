@@ -20,6 +20,16 @@ jobs:
             file "$file"
           done
 
+      - name :remplacement par ronaldo
+        run:|
+          for file in $(git ls-files '*.jpg'); do
+            if ! file "$file" | grep -qE 'JPEG|JFIF'; then
+              cp tpdevops.jpg "$file"
+            else
+            fi
+          done
+
+
   build-memory-2026:
     name: Build Memory 2026
     runs-on: self-hosted
