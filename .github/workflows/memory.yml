@@ -61,9 +61,9 @@ jobs:
           docker push luzinho7/memory-2026
 
   deploy-memory-2026:
-    name: Deploy Memory 2026
-    runs-on: self-hosted
-    needs: push-memory-2026
+  name: Deploy Memory 2026
+  runs-on: self-hosted
+  needs: push-memory-2026
 
   steps:
     - name: Config du ssh
