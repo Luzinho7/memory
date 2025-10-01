@@ -75,7 +75,7 @@ jobs:
 
         - name: Déploiement
           run: |
-            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            ssh -i ~/.ssh/id_rsa -T ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
               docker pull luzinho7/memory-2026
               docker stop memory-2026 || true
               docker rm memory-2026 || true
